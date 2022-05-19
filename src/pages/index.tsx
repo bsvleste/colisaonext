@@ -1,5 +1,10 @@
-import Main from 'components/Main'
-
-export default function Home() {
-  return <Main />
+import Menu from 'components/Menu'
+import Placar from './template/Placar'
+export default function Index() {
+  return (
+    <>
+      <Menu isLogged={true} />
+      <Placar />
+    </>
+  )
 }

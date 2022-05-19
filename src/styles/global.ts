@@ -64,7 +64,8 @@ const GlobalStyles = createGlobalStyle`
     body {
       font-family: ${theme.font.family};
       font-size: ${theme.font.sizes.medium};
-      background-color: ${theme.colors.pretoFlat};
+      background-color: ${theme.colors.preto};
+      color: ${theme.colors.branco};
     }
   `}
 `

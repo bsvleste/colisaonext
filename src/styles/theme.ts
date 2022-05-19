@@ -1,6 +1,6 @@
 export default {
   grid: {
-    container: '130rem',
+    container: '100rem',
     gutter: '3.2rem'
   },
   border: {
@@ -23,7 +23,7 @@ export default {
     }
   },
   colors: {
-    preto: '#303030',
+    preto: '#000',
     vermelho: '#FF0000',
     verde: '#11FF00',
     branco: '#FFFFFF',
@@ -33,7 +33,7 @@ export default {
     amareloClaro: '#FEFE98',
     amareloHover: '#BFBF00',
     pretoMenu: '#15171b',
-    amareloMenu: '#ffce54'
+    amareloMenu: '#ffed00'
   },
   spacings: {
     xxsmall: '0.8rem',

@@ -6,7 +6,7 @@ declare module 'styled-components' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
   export interface DefaultTheme extends Theme {
     grid: {
-      container: '130rem'
+      container: '100rem'
       gutter: '3.2rem'
     }
     border: {
@@ -38,7 +38,7 @@ declare module 'styled-components' {
       amareloClaro: '#FEFE98'
       amareloHover: '#BFBF00'
       pretoMenu: '#15171b'
-      amareloMenu: '#ffce54'
+      amareloMenu: '#ffed00'
     }
     spacings: {
       xxsmall: '0.8rem'
