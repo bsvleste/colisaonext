@@ -1,13 +1,14 @@
 import { forwardRef, AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react'
 import * as S from './styles'
+export type LineColors = 'amareloMenu' | 'preto'
 type ButtonTypes =
   | AnchorHTMLAttributes<HTMLAnchorElement>
   | ButtonHTMLAttributes<HTMLButtonElement>
 export type ButtonProps = {
   size?: 'small' | 'medium' | 'large'
   fullWidth?: boolean
-  backgroundColor?: string
-  color: string
+  backgroundColor?: LineColors
+  color?: LineColors
   icon?: JSX.Element
   minimal?: boolean
   as?: React.ElementType
@@ -15,8 +16,8 @@ export type ButtonProps = {
 } & ButtonTypes
 const Button: React.ForwardRefRenderFunction<S.WrapperProps, ButtonProps> = (
   {
-    color = 'pretoFlat',
-    backgroundColor = 'amareloMenu',
+    color,
+    backgroundColor,
     minimal = false,
     children,
     size = 'medium',

@@ -1,12 +1,18 @@
 import styled, { css, DefaultTheme } from 'styled-components'
-import { ButtonProps } from '.'
+import { ButtonProps, LineColors } from '.'
 
 export type WrapperProps = { hasIcon: boolean } & Pick<
   ButtonProps,
-  'size' | 'fullWidth' | 'minimal' | 'color' | 'backgroundColor' | 'border'
+  'size' | 'fullWidth' | 'minimal' | 'border' | 'color' | 'backgroundColor'
 >
 
 const wrapperModifiers = {
+  color: (theme: DefaultTheme, color: LineColors) => css`
+    color: ${theme.colors[color]};
+  `,
+  background: (theme: DefaultTheme, backgroundColor: LineColors) => css`
+    background-color: ${theme.colors[backgroundColor]};
+  `,
   minimal: (theme: DefaultTheme) => css`
     background: none;
     color: ${theme.colors.amareloMenu};
@@ -57,8 +63,6 @@ export const Wrapper = styled.button<WrapperProps>`
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: ${theme.colors[backgroundColor]};
-    color: ${theme.colors[color]};
     border: 0;
     cursor: pointer;
     border-radius: ${theme.border.radius};
@@ -73,6 +77,8 @@ export const Wrapper = styled.button<WrapperProps>`
     ${!!fullWidth && wrapperModifiers.fullWidth()};
     ${!!border && wrapperModifiers.buttonBorder()};
     ${!!hasIcon && wrapperModifiers.withIcon(theme)};
-    ${minimal && wrapperModifiers.minimal(theme)}
+    ${minimal && wrapperModifiers.minimal(theme)};
+    ${!!color && wrapperModifiers.color(theme, color)}
+    ${!!backgroundColor && wrapperModifiers.background(theme, backgroundColor)}
   `}
 `

@@ -31,10 +31,10 @@ const Scoreboard = ({
       </S.ResultadoSegundoQuadro>
       {!!haveButton && (
         <S.WrapperButton>
-          <Button color="amareloMenu" backgroundColor="pretoFlat" size="large">
+          <Button color="amareloMenu" backgroundColor="preto" size="large">
             Alterar Resultado
           </Button>
-          <Button color="pretoFlat" backgroundColor="amareloMenu" size="large">
+          <Button color="preto" backgroundColor="amareloMenu" size="large">
             Excluir Resultado
           </Button>
         </S.WrapperButton>

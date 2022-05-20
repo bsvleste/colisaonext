@@ -1,13 +1,14 @@
 import Button from 'components/Button'
+import Card from 'components/Card'
 import { Container } from 'components/Container'
 import ControlMonth from 'components/ControlMonth'
 import Scoreboard from 'components/Scoreboard'
 import * as S from './styles'
-
 const Placar = () => {
   const isAdm = true
   return (
     <Container>
+      <Card />
       <ControlMonth title="Janeiro" />
       <S.Wrapper>
         <Scoreboard
@@ -24,20 +25,12 @@ const Placar = () => {
         {isAdm && (
           <S.WrapperButton>
             <S.Button>
-              <Button
-                color="amareloMenu"
-                size="large"
-                backgroundColor="pretoFlat"
-              >
+              <Button color="amareloMenu" size="large" backgroundColor="preto">
                 Alterar Resultado
               </Button>
             </S.Button>
             <S.Button>
-              <Button
-                color="pretoFlat"
-                size="large"
-                backgroundColor="amareloMenu"
-              >
+              <Button color="preto" size="large" backgroundColor="amareloMenu">
                 Alterar Resultado
               </Button>
             </S.Button>

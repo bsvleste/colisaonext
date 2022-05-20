@@ -5,7 +5,6 @@ export default {
   title: 'Scoreboard',
   component: Scoreboard
 } as Meta
-
 export const Default: Story<ScoreboardProps> = (args) => (
   <div style={{ margin: '0 auto' }}>
     <Scoreboard {...args} />
