@@ -1,5 +1,5 @@
 import styled, { css, DefaultTheme } from 'styled-components'
-import { CardProps, LineColors } from '.'
+import { ModalScoreboardProps, LineColors } from '.'
 export const Wrapper = styled.section`
   ${({ theme }) => css`
     margin: 0 auto;
@@ -33,30 +33,47 @@ export const Scoreboard = styled.div`
   margin-top: 16px;
 `
 
-const wrapperModifier = {
+/* const wrapperModifier = {
   color: (theme: DefaultTheme, color: LineColors) => css`
     color: ${theme.colors[color]};
   `,
   background: (theme: DefaultTheme, backgroundColor: LineColors) => css`
     background-color: ${theme.colors[backgroundColor]};
   `
-}
+} */
 
-export const WrapperScoreboard = styled.div<CardProps>`
-  ${({ theme, color, backgroundColor }) => css`
+export const WrapperScoreboardSecond = styled.div`
+  ${({ theme }) => css`
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
     margin-top: 16px;
     height: 120px;
-    ${!!color && wrapperModifier.color(theme, color)}
-    ${!!backgroundColor && wrapperModifier.background(theme, backgroundColor)}
+    color: ${theme.colors.amareloMenu};
+    background: ${theme.colors.preto};
   `}
 `
-export const Game = styled.h1<CardProps>`
-  ${({ theme, color }) => css`
-    ${!!color && wrapperModifier.color(theme, color)}
+export const WrapperScoreboardFirst = styled.div`
+  ${({ theme }) => css`
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 16px;
+    height: 120px;
+    color: ${theme.colors.preto};
+    background: ${theme.colors.amareloMenu};
+  `}
+`
+export const GameSecond = styled.h1`
+  ${({ theme }) => css`
+    color: ${theme.colors.amareloMenu};
+  `}
+`
+export const GameFirst = styled.h1`
+  ${({ theme }) => css`
+    color: ${theme.colors.preto};
   `}
 `
 export const WrapperButton = styled.div`
