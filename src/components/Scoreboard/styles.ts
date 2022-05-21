@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components'
-import { ScoreboardProps } from '.'
 
 export const Wrapper = styled.section`
   ${({ theme }) => css`
@@ -10,16 +9,29 @@ export const Wrapper = styled.section`
     background-color: ${theme.colors.amareloMenu};
   `}
 `
-export const ResultadoSegundoQuadro = styled.div<ScoreboardProps>`
-  ${({ theme, color, background }) => css`
-    background-color: ${theme.colors[color]};
+
+export const ResultadoSegundoQuadro = styled.div`
+  ${({ theme }) => css`
     width: 100%;
     height: 195px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: ${theme.colors[background]};
+    background-color: ${theme.colors.preto};
+    color: ${theme.colors.amareloMenu};
+  `}
+`
+export const ResultadoPrimeiroQuadro = styled.div`
+  ${({ theme }) => css`
+    width: 100%;
+    height: 195px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: ${theme.colors.amareloMenu};
+    color: ${theme.colors.preto};
   `}
 `
 export const WrapperResultado = styled.div`

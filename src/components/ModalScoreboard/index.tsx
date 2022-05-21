@@ -5,7 +5,7 @@ import { PlusCircle } from '@styled-icons/feather/PlusCircle'
 import { MinusCircle } from '@styled-icons/feather/MinusCircle'
 import Button from 'components/Button'
 import Modal from 'react-modal'
-
+import { v4 as uuid4 } from 'uuid'
 export type LineColors = 'amareloMenu' | 'preto'
 export type ModalScoreboardProps = {
   title?: string
@@ -54,18 +54,23 @@ const ModalScoreboard = ({
         break
     }
   }
-  function handlePickDate(e) {
+  function handlePickDate(e: any) {
     setDataPartida(e.currentTarget.value)
   }
   function handleSaveScoreboard() {
     const lastScoreboard = localStorage.getItem('@colisao')
     const newScoreboard = lastScoreboard ? JSON.parse(lastScoreboard) : []
     const scoreboard = {
-      segundoColisao,
-      segundoAdversario,
-      primeiroColisao,
-      primeiroAdversario,
-      dataPartida
+      id: uuid4(),
+      segundoQuadro: {
+        segundoColisao,
+        segundoAdversario
+      },
+      primeiroQuadro: {
+        primeiroColisao,
+        primeiroAdversario
+      },
+      dataPartida: new Date(dataPartida)
     }
     const scoreboardFormatted = [scoreboard, ...newScoreboard]
     console.log(scoreboardFormatted)
@@ -123,7 +128,7 @@ const ModalScoreboard = ({
                   <MinusCircle
                     size={32}
                     id="segundoColisao"
-                    onClick={(e) => handleChekIsLessThanZero(e)}
+                    onClick={(e: any) => handleChekIsLessThanZero(e)}
                   />
                 </Button>
               </S.GroupButton>
@@ -154,7 +159,7 @@ const ModalScoreboard = ({
                   <MinusCircle
                     size={32}
                     id="segundoAdv"
-                    onClick={(e) => handleChekIsLessThanZero(e)}
+                    onClick={(e: any) => handleChekIsLessThanZero(e)}
                   />
                 </Button>
               </S.GroupButton>
@@ -190,7 +195,7 @@ const ModalScoreboard = ({
                   <MinusCircle
                     size={32}
                     id="primeiroColisao"
-                    onClick={(e) => handleChekIsLessThanZero(e)}
+                    onClick={(e: any) => handleChekIsLessThanZero(e)}
                   />
                 </Button>
               </S.GroupButton>
@@ -221,7 +226,7 @@ const ModalScoreboard = ({
                   <MinusCircle
                     size={32}
                     id="primeiroAdv"
-                    onClick={(e) => handleChekIsLessThanZero(e)}
+                    onClick={(e: any) => handleChekIsLessThanZero(e)}
                   />
                 </Button>
               </S.GroupButton>

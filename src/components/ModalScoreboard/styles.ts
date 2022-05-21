@@ -1,5 +1,4 @@
-import styled, { css, DefaultTheme } from 'styled-components'
-import { ModalScoreboardProps, LineColors } from '.'
+import styled, { css } from 'styled-components'
 export const Wrapper = styled.section`
   ${({ theme }) => css`
     margin: 0 auto;
@@ -32,15 +31,6 @@ export const Scoreboard = styled.div`
   align-items: center;
   margin-top: 16px;
 `
-
-/* const wrapperModifier = {
-  color: (theme: DefaultTheme, color: LineColors) => css`
-    color: ${theme.colors[color]};
-  `,
-  background: (theme: DefaultTheme, backgroundColor: LineColors) => css`
-    background-color: ${theme.colors[backgroundColor]};
-  `
-} */
 
 export const WrapperScoreboardSecond = styled.div`
   ${({ theme }) => css`

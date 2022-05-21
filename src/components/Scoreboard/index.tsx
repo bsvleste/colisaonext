@@ -1,35 +1,55 @@
 import Button from 'components/Button'
+import { ScoreboardMatchProps } from 'pages/template/Placar'
 import * as S from './styles'
+
 export interface ScoreboardProps {
-  background: 'amareloMenu' | 'preto'
-  color: 'amareloMenu' | 'preto'
   data?: string
   infoQuadro?: string
-  haveButton?: boolean
+  idAdm?: boolean
+  info: ScoreboardMatchProps
 }
-const Scoreboard = ({
-  infoQuadro,
-  data,
-  color = 'preto',
-  background = 'amareloMenu',
-  haveButton = false
-}: ScoreboardProps) => {
+const Scoreboard = ({ idAdm = false, info }: ScoreboardProps) => {
+  const { dataPartida, segundoQuadro, primeiroQuadro } = info
   return (
     <>
-      <S.ResultadoSegundoQuadro color={color} background={background}>
-        <S.DataJogo>{data}</S.DataJogo>
-        <S.InfoQuadro>{infoQuadro}</S.InfoQuadro>
+      <S.ResultadoSegundoQuadro>
+        <S.DataJogo>
+          {Intl.DateTimeFormat('pt-Br', {
+            timeZone: 'UTC',
+            day: '2-digit',
+            month: '2-digit',
+            year: '2-digit'
+          }).format(new Date(dataPartida))}
+        </S.DataJogo>
+        <S.InfoQuadro>Segundo Quadro</S.InfoQuadro>
         <S.WrapperResultado>
           <S.Logo>
             <p>Colisão</p>
           </S.Logo>
-          <S.Resultado>3 X 2</S.Resultado>
+          <S.Resultado>
+            {segundoQuadro.segundoColisao} X {segundoQuadro.segundoAdversario}
+          </S.Resultado>
           <S.Logo>
             <p>Adversário</p>
           </S.Logo>
         </S.WrapperResultado>
       </S.ResultadoSegundoQuadro>
-      {!!haveButton && (
+      <S.ResultadoPrimeiroQuadro>
+        <S.InfoQuadro>Primeiro Quadro</S.InfoQuadro>
+        <S.WrapperResultado>
+          <S.Logo>
+            <p>Colisão</p>
+          </S.Logo>
+          <S.Resultado>
+            {primeiroQuadro.primeiroColisao} X{' '}
+            {primeiroQuadro.primeiroAdversario}
+          </S.Resultado>
+          <S.Logo>
+            <p>Adversário</p>
+          </S.Logo>
+        </S.WrapperResultado>
+      </S.ResultadoPrimeiroQuadro>
+      {!!idAdm && (
         <S.WrapperButton>
           <Button color="amareloMenu" backgroundColor="preto" size="large">
             Alterar Resultado

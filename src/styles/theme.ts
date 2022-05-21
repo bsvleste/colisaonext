@@ -32,7 +32,7 @@ export default {
     amareloFlat: '#FEFE34',
     amareloClaro: '#FEFE98',
     amareloHover: '#BFBF00',
-    pretoMenu: '#15171b',
+    pretoMenu: '#111',
     amareloMenu: '#ffed00'
   },
   spacings: {

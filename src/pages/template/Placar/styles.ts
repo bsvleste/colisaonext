@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import media from 'styled-media-query'
 
 export const Wrapper = styled.div`
@@ -31,5 +31,18 @@ export const Button = styled.div`
   ${media.greaterThan('medium')`
   flex-direction: row;
 
+  `}
+`
+export const WrapperMonth = styled.div`
+  ${({ theme }) => css`
+    display: flex;
+    justify-content: space-between;
+    align: center;
+    color: ${theme.colors.amareloMenu};
+    font-size: ${theme.font.sizes.xxlarge};
+    font-weight: bold;
+    svg {
+      cursor: pointer;
+    }
   `}
 `
