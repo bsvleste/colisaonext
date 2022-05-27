@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useEffect, useState } from 'react';
 import Router from 'next/router';
 import { api } from 'services/api';
-import { setCookie, parseCookies } from 'nookies';
+import { setCookie, parseCookies, destroyCookie } from 'nookies';
 type UserProps = {
   id: string;
   email: string;
@@ -30,15 +30,22 @@ export function AuthProvider({ children }: AuthProviderProps) {
   useEffect(() => {
     const { 'nextauth.colisaoToken': token } = parseCookies();
     if (token) {
-      api.get('/auth/authInfo').then((response) => {
-        const { email, nome, id, isAdm } = response.data;
-        setUser({
-          email,
-          id,
-          nome,
-          isAdm,
+      api
+        .get('/auth/authInfo')
+        .then((response) => {
+          const { email, nome, id, isAdm } = response.data;
+          setUser({
+            email,
+            id,
+            nome,
+            isAdm,
+          });
+        })
+        .catch((error) => {
+          destroyCookie(undefined, 'nextauth.colisaoTokenIsAdm');
+          destroyCookie(undefined, 'nextauth.colisaoToken');
+          Router.push('/sign-in');
         });
-      });
     }
   }, []);
   async function signIn({ email, password }: SignInCredentials) {
@@ -58,6 +65,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
         maxAge: 60 * 60 * 24 * 30, //30 days
         path: '/',
       });
+      /*  setCookie(undefined, 'nextauth.refreshToken', refreshToken, {
+        maxAge: 60 * 60 * 24 * 30, //30 days
+        path: '/',
+      }); */
       setUser({
         id,
         email,
