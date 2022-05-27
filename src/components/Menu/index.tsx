@@ -1,17 +1,19 @@
-import { useState } from 'react'
-import * as S from './styles'
-import MediaMatch from 'components/Mediamatch'
-import { Menu2 as MenuIcon } from '@styled-icons/remix-line/Menu2'
-import { Close as CloseIcon } from '@styled-icons/remix-line/Close'
-import Button from 'components/Button'
+import { useContext, useState } from 'react';
+import * as S from './styles';
+import MediaMatch from 'components/Mediamatch';
+import { Menu2 as MenuIcon } from '@styled-icons/remix-line/Menu2';
+import { Close as CloseIcon } from '@styled-icons/remix-line/Close';
+import Button from 'components/Button';
+import { AuthContext } from 'contexts/AuthContext';
 export type MenuProps = {
-  userName?: string
-  isLogged?: boolean
-}
-const Menu = ({ isLogged }: MenuProps) => {
-  const img = 'https://source.unsplash.com/user/willianjusten/1042x580'
-  const [isOpen, setIsOpen] = useState(false)
+  userName?: string;
+  isLogged?: boolean;
+};
 
+const Menu = ({ isLogged }: MenuProps) => {
+  const img = 'https://source.unsplash.com/user/willianjusten/1042x580';
+  const [isOpen, setIsOpen] = useState(false);
+  const { user } = useContext(AuthContext);
   return (
     <S.Wrapper>
       {isLogged ? (
@@ -26,7 +28,7 @@ const Menu = ({ isLogged }: MenuProps) => {
             <S.MenuNav>
               <S.MenuLink href="#">Placar</S.MenuLink>
               <S.MenuLink href="#">Bid</S.MenuLink>
-              <S.MenuLink href="#">Mensalidade</S.MenuLink>
+              {user?.isAdm && <S.MenuLink href="#">Mensalidade</S.MenuLink>}
             </S.MenuNav>
           </MediaMatch>
 
@@ -34,9 +36,9 @@ const Menu = ({ isLogged }: MenuProps) => {
             <S.MenuGroup>
               <S.InfoJogador>
                 <S.FotoPerfilJogador src={img} />
-                <S.Title>Bruno</S.Title>
+                <S.Title>{user?.nome}</S.Title>
               </S.InfoJogador>
-              <Button color="amareloMenu" backgroundColor="pretoFlat">
+              <Button color="amareloMenu" backgroundColor="preto">
                 Logof
               </Button>
             </S.MenuGroup>
@@ -52,7 +54,7 @@ const Menu = ({ isLogged }: MenuProps) => {
               <S.MenuLink href="#">Placar</S.MenuLink>
               <S.MenuLink href="#">Bid</S.MenuLink>
               <S.MenuLink href="#">Mensalidade</S.MenuLink>
-              <Button color="amareloMenu" backgroundColor="pretoFlat">
+              <Button color="amareloMenu" backgroundColor="preto">
                 Logof
               </Button>
             </S.MenuNav>
@@ -64,6 +66,6 @@ const Menu = ({ isLogged }: MenuProps) => {
         </div>
       )}
     </S.Wrapper>
-  )
-}
-export default Menu
+  );
+};
+export default Menu;

@@ -1,15 +1,15 @@
-import Button from 'components/Button'
-import { ScoreboardMatchProps } from 'pages/template/Placar'
-import * as S from './styles'
+import Button from 'components/Button';
+import { ScoreboardMatchProps } from 'pages/template/Placar';
+import * as S from './styles';
 
 export interface ScoreboardProps {
-  data?: string
-  infoQuadro?: string
-  idAdm?: boolean
-  info: ScoreboardMatchProps
+  data?: string;
+  infoQuadro?: string;
+  idAdm?: boolean;
+  info: ScoreboardMatchProps;
 }
 const Scoreboard = ({ idAdm = false, info }: ScoreboardProps) => {
-  const { dataPartida, segundoQuadro, primeiroQuadro } = info
+  const { dataPartida, segundoQuadro, primeiroQuadro } = info;
   return (
     <>
       <S.ResultadoSegundoQuadro>
@@ -18,7 +18,7 @@ const Scoreboard = ({ idAdm = false, info }: ScoreboardProps) => {
             timeZone: 'UTC',
             day: '2-digit',
             month: '2-digit',
-            year: '2-digit'
+            year: '2-digit',
           }).format(new Date(dataPartida))}
         </S.DataJogo>
         <S.InfoQuadro>Segundo Quadro</S.InfoQuadro>
@@ -60,7 +60,7 @@ const Scoreboard = ({ idAdm = false, info }: ScoreboardProps) => {
         </S.WrapperButton>
       )}
     </>
-  )
-}
+  );
+};
 
-export default Scoreboard
+export default Scoreboard;

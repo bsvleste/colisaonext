@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components'
 import media from 'styled-media-query'
-
 export const Container = styled.main`
   ${({ theme }) => css`
     margin-top: 60px;
