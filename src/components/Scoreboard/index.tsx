@@ -1,5 +1,8 @@
 import Button from 'components/Button';
+import Can from 'components/Can';
+import ModalScoreboard from 'components/ModalScoreboard';
 import { ScoreboardMatchProps } from 'pages/template/Placar';
+import { useState } from 'react';
 import * as S from './styles';
 
 export interface ScoreboardProps {
@@ -8,10 +11,18 @@ export interface ScoreboardProps {
   idAdm?: boolean;
   info: ScoreboardMatchProps;
 }
-const Scoreboard = ({ idAdm = false, info }: ScoreboardProps) => {
+const Scoreboard = ({ info }: ScoreboardProps) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { dataPartida, segundoQuadro, primeiroQuadro } = info;
+  function handleOpenModal() {
+    setIsModalOpen(true);
+  }
+  function handleCloseModal() {
+    setIsModalOpen(false);
+  }
   return (
     <>
+      <ModalScoreboard isOpen={isModalOpen} onRequestClose={handleCloseModal} />
       <S.ResultadoSegundoQuadro>
         <S.DataJogo>
           {Intl.DateTimeFormat('pt-Br', {
@@ -49,7 +60,8 @@ const Scoreboard = ({ idAdm = false, info }: ScoreboardProps) => {
           </S.Logo>
         </S.WrapperResultado>
       </S.ResultadoPrimeiroQuadro>
-      {!!idAdm && (
+
+      <Can roles={['administrator']}>
         <S.WrapperButton>
           <Button color="amareloMenu" backgroundColor="preto" size="large">
             Alterar Resultado
@@ -58,7 +70,15 @@ const Scoreboard = ({ idAdm = false, info }: ScoreboardProps) => {
             Excluir Resultado
           </Button>
         </S.WrapperButton>
-      )}
+        <Button
+          backgroundColor="amareloMenu"
+          color="preto"
+          fullWidth
+          onClick={handleOpenModal}
+        >
+          Criar novo Placar
+        </Button>
+      </Can>
     </>
   );
 };

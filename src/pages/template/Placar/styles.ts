@@ -1,14 +1,14 @@
-import styled, { css } from 'styled-components'
-import media from 'styled-media-query'
+import styled, { css } from 'styled-components';
+import media from 'styled-media-query';
 
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-`
+`;
 export const WrapperScorebaord = styled.section`
   margin-top: 8px;
-`
+`;
 
 export const WrapperButton = styled.div`
   display: flex;
@@ -20,7 +20,7 @@ export const WrapperButton = styled.div`
   flex-direction: row;
 
   `}
-`
+`;
 
 export const Button = styled.div`
   display: flex;
@@ -32,7 +32,7 @@ export const Button = styled.div`
   flex-direction: row;
 
   `}
-`
+`;
 export const WrapperMonth = styled.div`
   ${({ theme }) => css`
     display: flex;
@@ -45,4 +45,4 @@ export const WrapperMonth = styled.div`
       cursor: pointer;
     }
   `}
-`
+`;

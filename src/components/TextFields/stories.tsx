@@ -1,7 +1,7 @@
-import { Story, Meta } from '@storybook/react/types-6-0'
-import { Email } from '@styled-icons/material-outlined'
+import { Story, Meta } from '@storybook/react/types-6-0';
+import { Email } from '@styled-icons/material-outlined';
 
-import TextField, { TextFieldProps } from '.'
+import { Input as TextField, TextFieldProps } from '.';
 
 export default {
   title: 'Form/TextField',
@@ -12,7 +12,7 @@ export default {
     icon: <Email />,
     initialValue: '',
     placeholder: 'john.cage@gmail.com',
-    disabled: false
+    disabled: false,
   },
   parameters: {
     backgrounds: {
@@ -20,33 +20,32 @@ export default {
       values: [
         {
           name: 'Loggin',
-          value: '#ffe600'
+          value: '#ffe600',
         },
         {
           name: 'home',
-          value: '#000'
-        }
-      ]
-    }
+          value: '#000',
+        },
+      ],
+    },
   },
   argTypes: {
     onInput: { action: 'changed' },
-    icon: { type: '' }
-  }
-} as unknown as Meta<TextFieldProps>
-
+    icon: { type: '' },
+  },
+} as unknown as Meta<TextFieldProps>;
 export const Default: Story<TextFieldProps> = (args) => (
   <div style={{ maxWidth: 300, padding: 15 }}>
     <TextField {...args} />
   </div>
-)
+);
 
 export const withError: Story<TextFieldProps> = (args) => (
   <div style={{ maxWidth: 300, padding: 15 }}>
     <TextField {...args} />
   </div>
-)
+);
 
 withError.args = {
-  error: 'Ops...something is wrong'
-}
+  error: 'Ops...something is wrong',
+};

@@ -32,6 +32,7 @@ export const ResultadoPrimeiroQuadro = styled.div`
     align-items: center;
     background-color: ${theme.colors.amareloMenu};
     color: ${theme.colors.preto};
+    margin-bottom: 18px;
   `}
 `;
 export const WrapperResultado = styled.div`

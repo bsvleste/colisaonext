@@ -1,8 +1,7 @@
-import styled, { css } from 'styled-components'
-import { darken, lighten } from 'polished'
-
-import * as TextFieldStyles from 'components/TextFields/styles'
-import * as ButtonStyles from 'components/Button/styles'
+import styled, { css } from 'styled-components';
+import { darken, lighten } from 'polished';
+import * as TextFieldStyles from 'components/TextFields/styles';
+import * as ButtonStyles from 'components/Button/styles';
 
 export const FormWrapper = styled.div`
   ${({ theme }) => css`
@@ -13,7 +12,7 @@ export const FormWrapper = styled.div`
       margin: ${theme.spacings.medium} auto ${theme.spacings.xsmall};
     }
   `}
-`
+`;
 export const ForgotPassword = styled.a`
   ${({ theme }) => css`
     display: block;
@@ -25,7 +24,7 @@ export const ForgotPassword = styled.a`
       color: ${lighten(0.2, theme.colors.preto)};
     }
   `}
-`
+`;
 export const FormLink = styled.div`
   ${({ theme }) => css`
     font-size: ${theme.font.sizes.small};
@@ -42,4 +41,4 @@ export const FormLink = styled.div`
       }
     }
   `}
-`
+`;

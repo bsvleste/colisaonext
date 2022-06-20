@@ -1,10 +1,10 @@
-import FormSignIn from 'components/FormSignIn';
 import Auth from './template/Auth';
 import { withSSRGuest } from '../utils/withSSRGuest';
-export default function SignIn() {
+import FormSignUp from 'components/FormSignUp';
+export default function SignUp() {
   return (
-    <Auth title="Sign In">
-      <FormSignIn />
+    <Auth title="Sign Up">
+      <FormSignUp />
     </Auth>
   );
 }

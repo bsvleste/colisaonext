@@ -1,6 +1,6 @@
-import styled, { css } from 'styled-components'
-import * as HeadingsStyles from 'components/Heading/styles'
-import media from 'styled-media-query'
+import styled, { css } from 'styled-components';
+import * as HeadingsStyles from 'components/Heading/styles';
+import media from 'styled-media-query';
 
 export const Wrapper = styled.main`
   display: grid;
@@ -9,7 +9,7 @@ export const Wrapper = styled.main`
   ${media.greaterThan('medium')`
   grid-template-columns: 1fr 1fr;
   `}
-`
+`;
 export const BannerBlock = styled.div`
   ${({ theme }) => css`
     background-image: url(/img/logoColisao.png);
@@ -17,12 +17,13 @@ export const BannerBlock = styled.div`
     background-position: center center;
     width: 300px;
     height: 300px;
-    margin: 0 auto;
+
+    margin: auto;
     ${media.lessThan('medium')`
         display: none;
       `}
   `}
-`
+`;
 export const BannerContent = styled.div`
   ${({ theme }) => css`
     display: grid;
@@ -37,7 +38,7 @@ export const BannerContent = styled.div`
       height: fit-content;
     }
   `}
-`
+`;
 
 export const Subtitle = styled.h3`
   ${({ theme }) => css`
@@ -48,14 +49,14 @@ export const Subtitle = styled.h3`
       color: ${theme.colors.preto};
     }
   `}
-`
+`;
 export const Footer = styled.p`
   ${({ theme }) => css`
     font-size: ${theme.font.sizes.xsmall};
     text-align: center;
     align-self: end;
   `}
-`
+`;
 export const Content = styled.div`
   ${({ theme }) => css`
     background: ${theme.colors.amareloMenu};
@@ -63,7 +64,7 @@ export const Content = styled.div`
     align-items: center;
     justify-content: center;
   `}
-`
+`;
 export const ContentWrapper = styled.div`
   ${({ theme }) => css`
     width: 30rem;
@@ -75,4 +76,4 @@ export const ContentWrapper = styled.div`
       margin-bottom: ${theme.spacings.medium};
     }
   `}
-`
+`;

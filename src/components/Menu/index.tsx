@@ -1,10 +1,12 @@
 import { useContext, useState } from 'react';
-import * as S from './styles';
+import Link from 'next/link';
 import MediaMatch from 'components/Mediamatch';
 import { Menu2 as MenuIcon } from '@styled-icons/remix-line/Menu2';
 import { Close as CloseIcon } from '@styled-icons/remix-line/Close';
 import Button from 'components/Button';
 import { AuthContext } from 'contexts/AuthContext';
+import { UseCan } from 'hooks/useCan';
+import * as S from './styles';
 export type MenuProps = {
   userName?: string;
   isLogged?: boolean;
@@ -13,58 +15,72 @@ export type MenuProps = {
 const Menu = ({ isLogged }: MenuProps) => {
   const img = 'https://source.unsplash.com/user/willianjusten/1042x580';
   const [isOpen, setIsOpen] = useState(false);
-  const { user } = useContext(AuthContext);
+  const { user, signOut } = useContext(AuthContext);
+  const userCanSeeRoles = UseCan({
+    roles: ['administrator'],
+  });
   return (
     <S.Wrapper>
-      {isLogged ? (
-        <>
-          <MediaMatch lessThan="medium">
-            <S.IconWrapper onClick={() => setIsOpen(true)}>
-              <MenuIcon arial-label="open Menu" />
-            </S.IconWrapper>
-          </MediaMatch>
+      <MediaMatch lessThan="medium">
+        <S.IconWrapper onClick={() => setIsOpen(true)}>
+          <MenuIcon arial-label="open Menu" />
+        </S.IconWrapper>
+      </MediaMatch>
 
-          <MediaMatch greaterThan="medium">
-            <S.MenuNav>
-              <S.MenuLink href="#">Placar</S.MenuLink>
-              <S.MenuLink href="#">Bid</S.MenuLink>
-              {user?.isAdm && <S.MenuLink href="#">Mensalidade</S.MenuLink>}
-            </S.MenuNav>
-          </MediaMatch>
+      <MediaMatch greaterThan="medium">
+        <S.MenuNav>
+          <Link href="/placar" passHref>
+            <S.MenuLink>Placar</S.MenuLink>
+          </Link>
+          <Link href="/bid" passHref>
+            <S.MenuLink>Bid</S.MenuLink>
+          </Link>
+          {userCanSeeRoles && (
+            <Link href="#" passHref>
+              <S.MenuLink>Mensalidade</S.MenuLink>
+            </Link>
+          )}
+        </S.MenuNav>
+      </MediaMatch>
 
-          <MediaMatch greaterThan="medium">
-            <S.MenuGroup>
-              <S.InfoJogador>
-                <S.FotoPerfilJogador src={img} />
-                <S.Title>{user?.nome}</S.Title>
-              </S.InfoJogador>
-              <Button color="amareloMenu" backgroundColor="preto">
-                Logof
-              </Button>
-            </S.MenuGroup>
-          </MediaMatch>
+      <MediaMatch greaterThan="medium">
+        <S.MenuGroup>
+          <S.InfoJogador>
+            <S.FotoPerfilJogador src={img} />
+            <S.Title>{user?.nome}</S.Title>
+          </S.InfoJogador>
+          <Button
+            color="amareloMenu"
+            backgroundColor="preto"
+            onClick={() => signOut()}
+          >
+            Logof
+          </Button>
+        </S.MenuGroup>
+      </MediaMatch>
 
-          <S.MenuFull aria-hidden={!isOpen} isOpen={isOpen}>
-            <CloseIcon
-              aria-label="Close Menu"
-              onClick={() => setIsOpen(false)}
-            />
+      <S.MenuFull aria-hidden={!isOpen} isOpen={isOpen}>
+        <CloseIcon aria-label="Close Menu" onClick={() => setIsOpen(false)} />
 
-            <S.MenuNav>
-              <S.MenuLink href="#">Placar</S.MenuLink>
-              <S.MenuLink href="#">Bid</S.MenuLink>
-              <S.MenuLink href="#">Mensalidade</S.MenuLink>
-              <Button color="amareloMenu" backgroundColor="preto">
-                Logof
-              </Button>
-            </S.MenuNav>
-          </S.MenuFull>
-        </>
-      ) : (
-        <div>
-          <button>Singin</button>
-        </div>
-      )}
+        <S.MenuNav>
+          <Link passHref href="/placar">
+            <S.MenuLink href="/placar">Placar</S.MenuLink>
+          </Link>
+          <Link passHref href="/bid">
+            <S.MenuLink>Bid</S.MenuLink>
+          </Link>
+          <Link passHref href="/placar">
+            <S.MenuLink>Mensalidade</S.MenuLink>
+          </Link>
+          <Button
+            color="amareloMenu"
+            backgroundColor="preto"
+            onClick={() => signOut()}
+          >
+            Logof
+          </Button>
+        </S.MenuNav>
+      </S.MenuFull>
     </S.Wrapper>
   );
 };
