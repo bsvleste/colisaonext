@@ -7,11 +7,13 @@ let failedRequestQueue = [];
 
 export function setupAPIClient(ctx = undefined) {
   let cookies = parseCookies(ctx);
-  const api = axios.create({
-    baseURL: 'http://localhost:3333/api/colisao/v2/',
+  const config = {
     headers: {
       Authorization: `Bearer ${cookies['nextauth.colisaoToken']} `,
     },
+  };
+  const api = axios.create({
+    baseURL: 'http://localhost:3333/api/colisao/v2/',
   });
 
   api.interceptors.response.use(
@@ -28,7 +30,7 @@ export function setupAPIClient(ctx = undefined) {
           if (!isRefreshing) {
             isRefreshing = true;
             api
-              .post('/auth/refresh', { refreshToken })
+              .post('/auth/refresh', { refreshToken }, config)
               .then((response) => {
                 const { token, tokenisAdm } = response.data;
                 setCookie(ctx, 'nextauth.colisaoTokenIsAdm', tokenisAdm, {

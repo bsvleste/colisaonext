@@ -5,6 +5,7 @@ type ButtonTypes =
   | AnchorHTMLAttributes<HTMLAnchorElement>
   | ButtonHTMLAttributes<HTMLButtonElement>;
 export type ButtonProps = {
+  disabled?: boolean;
   size?: 'small' | 'medium' | 'large';
   fullWidth?: boolean;
   backgroundColor?: LineColors;
@@ -16,6 +17,7 @@ export type ButtonProps = {
 } & ButtonTypes;
 const Button: React.ForwardRefRenderFunction<S.WrapperProps, ButtonProps> = (
   {
+    disabled,
     color,
     backgroundColor,
     minimal = false,
@@ -38,6 +40,7 @@ const Button: React.ForwardRefRenderFunction<S.WrapperProps, ButtonProps> = (
     fullWidth={fullWidth}
     hasIcon={!!icon}
     border={border}
+    disabled={disabled}
   >
     {icon}
     {!!children && <span>{children}</span>}

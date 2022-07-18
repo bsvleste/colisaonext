@@ -1,8 +1,8 @@
 import Button from 'components/Button';
 import Can from 'components/Can';
-import ModalScoreboard from 'components/ModalScoreboard';
 import { ScoreboardMatchProps } from 'pages/template/Placar';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
+import Modal from 'react-modal';
 import * as S from './styles';
 
 export interface ScoreboardProps {
@@ -10,19 +10,13 @@ export interface ScoreboardProps {
   infoQuadro?: string;
   idAdm?: boolean;
   info: ScoreboardMatchProps;
+  onRequestOpenModal: (e: FormEvent) => void;
+  title?: string;
 }
-const Scoreboard = ({ info }: ScoreboardProps) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const { dataPartida, segundoQuadro, primeiroQuadro } = info;
-  function handleOpenModal() {
-    setIsModalOpen(true);
-  }
-  function handleCloseModal() {
-    setIsModalOpen(false);
-  }
+const Scoreboard = ({ info, onRequestOpenModal }: ScoreboardProps) => {
+  const { dataPartida, segundoQuadro, primeiroQuadro, _id: id } = info;
   return (
     <>
-      <ModalScoreboard isOpen={isModalOpen} onRequestClose={handleCloseModal} />
       <S.ResultadoSegundoQuadro>
         <S.DataJogo>
           {Intl.DateTimeFormat('pt-Br', {
@@ -63,21 +57,27 @@ const Scoreboard = ({ info }: ScoreboardProps) => {
 
       <Can roles={['administrator']}>
         <S.WrapperButton>
-          <Button color="amareloMenu" backgroundColor="preto" size="large">
+          <Button
+            color="amareloMenu"
+            backgroundColor="preto"
+            size="large"
+            name="Alterar"
+            onClick={onRequestOpenModal}
+            id={id}
+          >
             Alterar Resultado
           </Button>
-          <Button color="preto" backgroundColor="amareloMenu" size="large">
+          <Button
+            color="preto"
+            backgroundColor="amareloMenu"
+            size="large"
+            name="Excluir"
+            onClick={onRequestOpenModal}
+            id={id}
+          >
             Excluir Resultado
           </Button>
         </S.WrapperButton>
-        <Button
-          backgroundColor="amareloMenu"
-          color="preto"
-          fullWidth
-          onClick={handleOpenModal}
-        >
-          Criar novo Placar
-        </Button>
       </Can>
     </>
   );

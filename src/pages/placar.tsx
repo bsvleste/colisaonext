@@ -3,10 +3,19 @@ import Base from './template/Base';
 import { api } from 'services/apiClient';
 import Placar from './template/Placar';
 import { withSSRAuth } from 'utils/withSSRAuth';
+import { parseCookies } from 'nookies';
 
 export default function Placares() {
+  const { 'nextauth.colisaoToken': token } = parseCookies();
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
   useEffect(() => {
-    api.get('/auth/authInfo').then((response) => console.log(response.data));
+    api
+      .get('/auth/authInfo', config)
+      .then((response) => console.log(response.data));
   });
   return (
     <Base>

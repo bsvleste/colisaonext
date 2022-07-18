@@ -23,7 +23,6 @@ export function validateUserPermissions({
     }
   }
   if (roles?.length > 0) {
-    console.log(`tamanho da ${roles}`);
     const hasAllRoles = roles?.some((role) => {
       return user.roles.includes(role);
     });

@@ -5,6 +5,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  margin-bottom: 8px;
 `;
 export const WrapperScorebaord = styled.section`
   margin-top: 8px;

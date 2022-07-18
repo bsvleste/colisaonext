@@ -32,7 +32,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<UserProps>();
   const [erroAuth, setErroAuth] = useState(false);
   const isAuthenticated = !!user;
-
+  const { 'nextauth.colisaoToken': token } = parseCookies();
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
   useEffect(() => {
     authChannel = new BroadcastChannel('auth');
     authChannel.onmessage = (message) => {
@@ -50,7 +55,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     const { 'nextauth.colisaoToken': token } = parseCookies();
     if (token) {
       api
-        .get('/auth/authInfo')
+        .get('/auth/authInfo', config)
         .then((response) => {
           const { email, nome, id, isAdm, roles, permissions } = response.data;
           setUser({

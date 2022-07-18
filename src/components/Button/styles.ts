@@ -1,10 +1,16 @@
-import styled, { css, DefaultTheme } from 'styled-components'
-import { ButtonProps, LineColors } from '.'
+import styled, { css, DefaultTheme } from 'styled-components';
+import { ButtonProps, LineColors } from '.';
 
 export type WrapperProps = { hasIcon: boolean } & Pick<
   ButtonProps,
-  'size' | 'fullWidth' | 'minimal' | 'border' | 'color' | 'backgroundColor'
->
+  | 'size'
+  | 'fullWidth'
+  | 'minimal'
+  | 'border'
+  | 'color'
+  | 'backgroundColor'
+  | 'disabled'
+>;
 
 const wrapperModifiers = {
   color: (theme: DefaultTheme, color: LineColors) => css`
@@ -47,8 +53,12 @@ const wrapperModifiers = {
     height: 50px;
     width: 50px;
     text-align: center;
-  `
-}
+  `,
+  buttonDisabled: () => css`
+    opacity: 0.3;
+    cursor: not-allowed;
+  `,
+};
 export const Wrapper = styled.button<WrapperProps>`
   ${({
     theme,
@@ -58,7 +68,7 @@ export const Wrapper = styled.button<WrapperProps>`
     minimal,
     border,
     color,
-    backgroundColor
+    backgroundColor,
   }) => css`
     display: inline-flex;
     align-items: center;
@@ -68,6 +78,9 @@ export const Wrapper = styled.button<WrapperProps>`
     border-radius: ${theme.border.radius};
     padding: ${theme.spacings.xxsmall};
     text-decoration: none;
+    :disabled {
+      ${!!fullWidth && wrapperModifiers.buttonDisabled()};
+    }
     /* &:hover {
       background: ${minimal
       ? 'none'
@@ -81,4 +94,4 @@ export const Wrapper = styled.button<WrapperProps>`
     ${!!color && wrapperModifiers.color(theme, color)}
     ${!!backgroundColor && wrapperModifiers.background(theme, backgroundColor)}
   `}
-`
+`;
