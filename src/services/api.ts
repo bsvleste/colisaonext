@@ -13,7 +13,7 @@ export function setupAPIClient(ctx = undefined) {
     },
   };
   const api = axios.create({
-    baseURL: 'http://localhost:3333/api/colisao/v2/',
+    baseURL: 'https://backendcolisao.herokuapp.com/api/colisao/v2',
   });
 
   api.interceptors.response.use(
