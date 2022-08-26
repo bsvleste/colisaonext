@@ -66,7 +66,7 @@ const Menu = ({ isLogged }: MenuProps) => {
           <Link passHref href="/placar">
             <S.MenuLink href="/placar">Placar</S.MenuLink>
           </Link>
-         {/*  <Link passHref href="/bid">
+          {/*  <Link passHref href="/bid">
             <S.MenuLink>Bid</S.MenuLink>
           </Link>
           <Link passHref href="/placar">

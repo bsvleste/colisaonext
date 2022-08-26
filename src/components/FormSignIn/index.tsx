@@ -26,7 +26,7 @@ const FormSignIn = () => {
     resolver: yupResolver(createUserFormSchema),
   });
 
-  async function handleSubmitSignIn(data) {
+  async function handleSubmitSignIn(data: any) {
     await signIn(data);
   }
   return (
