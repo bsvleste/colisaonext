@@ -42,7 +42,7 @@ const FormSignUp = () => {
   } = useForm({
     resolver: yupResolver(createUserFormSchema),
   });
-  async function onSubmit(data) {
+  async function onSubmit(data: any) {
     const response = await api
       .post('auth/create', {
         nome: data.nome,
