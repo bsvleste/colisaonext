@@ -46,6 +46,4 @@ export const withError: Story<TextFieldProps> = (args) => (
   </div>
 );
 
-withError.args = {
-  error: 'Ops...something is wrong',
-};
+withError.args = {};

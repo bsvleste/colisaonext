@@ -54,13 +54,14 @@ const Placar = () => {
       setSelectedDate(subMonths(selectedDate, 1));
     }
   }
-  function handleOpenCloseModal(e: FormEvent) {
+  function handleOpenCloseModal(e: any) {
     setIsModalOpen(!isModalOpen);
     setGetIdToUpdate(e.currentTarget.id);
-    if (e.currentTarget.name === '') {
+    const { name, value } = e.currentTarget;
+    if (name === '') {
       setTitle('Novo');
     } else {
-      setTitle(e.currentTarget.name);
+      setTitle(name);
     }
   }
 

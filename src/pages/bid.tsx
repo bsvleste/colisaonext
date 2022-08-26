@@ -34,8 +34,6 @@ export default function Bid() {
 }
 export const getServerSideProps = withSSRAuth(
   async (ctx) => {
-    const apiClient = setupAPIClient(ctx);
-
     return {
       props: {},
     };
