@@ -1,13 +1,13 @@
-import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
-import { FormEvent, useContext, useState } from 'react';
-import { AuthContext } from '../../contexts/AuthContext';
-import Link from 'next/link';
 import Button from 'components/Button';
+import { ForgotPassword, FormLink, FormWrapper } from 'components/Form';
 import { Input as TextFields } from 'components/TextFields';
-import { Email, Lock } from 'styled-icons/material-outlined';
-import { FormWrapper, FormLink, ForgotPassword } from 'components/Form';
+import Link from 'next/link';
+import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import { Email, Lock } from 'styled-icons/material-outlined';
+import * as yup from 'yup';
+import { AuthContext } from '../../contexts/AuthContext';
 
 const FormSignIn = () => {
   const { signIn, erroAuth } = useContext(AuthContext);
@@ -21,7 +21,6 @@ const FormSignIn = () => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(createUserFormSchema),

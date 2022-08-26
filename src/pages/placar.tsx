@@ -12,6 +12,7 @@ export default function Placares() {
       Authorization: `Bearer ${token}`,
     },
   };
+
   useEffect(() => {
     api
       .get('/auth/authInfo', config)

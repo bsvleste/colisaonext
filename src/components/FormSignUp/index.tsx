@@ -37,7 +37,7 @@ const FormSignUp = () => {
   const {
     register,
     handleSubmit,
-    reset,
+
     formState: { errors },
   } = useForm({
     resolver: yupResolver(createUserFormSchema),
