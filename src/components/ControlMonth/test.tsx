@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+/* import { render, screen } from '@testing-library/react'
 
 import ControlMonth from '.'
 
@@ -11,3 +11,4 @@ describe('<ControlMonth />', () => {
     expect(container.firstChild).toMatchSnapshot()
   })
 })
+ */
