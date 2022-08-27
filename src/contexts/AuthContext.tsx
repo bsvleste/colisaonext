@@ -56,7 +56,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     if (token) {
       api
         .get('/auth/authInfo', config)
-        .then((response) => {
+        .then((response:any) => {
           const { email, nome, id, isAdm, roles, permissions } = response.data;
           setUser({
             email,
@@ -116,7 +116,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         permissions,
       });
 
-      api.defaults.headers['Authorization'] = `Bearer ${token}`;
+      api.instance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       setErroAuth(false);
       Router.push('/placar');
     } catch (error) {

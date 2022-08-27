@@ -3,7 +3,7 @@ import { signOut } from 'contexts/AuthContext';
 import { parseCookies, setCookie } from 'nookies';
 import { AuthTokenErrors } from './errors/AuthTokenErrors';
 let isRefreshing = false;
-let failedRequestQueue = [];
+let failedRequestQueue:any = [];
 
 export function setupAPIClient(ctx = undefined) {
   let cookies = parseCookies(ctx);
@@ -17,7 +17,7 @@ export function setupAPIClient(ctx = undefined) {
   });
 
   api.interceptors.response.use(
-    (response) => {
+    (response:any) => {
       return response;
     },
     (error: AxiosError) => {
@@ -31,7 +31,7 @@ export function setupAPIClient(ctx = undefined) {
             isRefreshing = true;
             api
               .post('/auth/refresh', { refreshToken }, config)
-              .then((response) => {
+              .then((response:any) => {
                 const { token, tokenisAdm } = response.data;
                 setCookie(ctx, 'nextauth.colisaoTokenIsAdm', tokenisAdm, {
                   maxAge: 60 * 60 * 24 * 30, //30 days
@@ -43,11 +43,11 @@ export function setupAPIClient(ctx = undefined) {
                   path: '/',
                 });
                 api.defaults.headers['Authorization'] = `Bearer ${token}`;
-                failedRequestQueue.forEach((request) => request.resolve(token));
+                failedRequestQueue.forEach((request:any) => request.resolve(token));
                 failedRequestQueue = [];
               })
-              .catch((err) => {
-                failedRequestQueue.forEach((request) => request.reject(err));
+              .catch((err: any) => {
+                failedRequestQueue.forEach((request: { reject: (arg0: any) => any; }) => request.reject(err));
                 failedRequestQueue = [];
                 if (process.browser) {
                   signOut();
